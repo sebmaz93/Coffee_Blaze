@@ -1,0 +1,11 @@
+extends layout
+
+block content
+ p.paragraph 
+  em Hello i am #{name}!
+ - const upDog = dog2.toUpperCase();
+ ol.orderlist.lista 
+  li.ls1 first dog | #{dog1}
+  li second dog #{upDog}
+  li third! cat #{cat}
+  img.dog(src="dog.jpg" alt=`${dog2}`)
