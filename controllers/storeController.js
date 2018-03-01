@@ -10,7 +10,13 @@ exports.addStore = (req, res) => {
 };
 
 exports.createStore = async (req, res) => {
-	const store = new Store(req.body);
-	await store.save();
-	res.redirect("/");
+	const store = await new Store(req.body).save();
+	req.flash("success", `The ${store.name} asking for Review!`);
+	res.redirect(`/store/${store.slug}`);
+};
+
+exports.getStores = async (req, res) => {
+	// 1. Query the DB before render
+	const stores = await Store.find();
+	res.render("stores", { title: "Stores", stores });
 };
